@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css">
+	<title>Thermostat HTML</title>
+	<style>
+		body {
+			background-color: #B2FFFF;
+			text-align: center;
+		}
+
+		h1 {
+			-webkit-text-stroke-width: 2px;
+			-webkit-text-stroke-color: #800020;
+		}
+
+		h2 {
+			font-family: calibri;
+		    color: #993300;
+		}
+
+	</style>
+</head>
+<body>
+	<h1>Welcome to Thermostat Controller</h1>
+	<h2>Current Temperature: <span id="temperture">20</span></h2>
+	<button id="increase" class="btn btn-outline-primary">Increase</button>
+	<button id="decrease" class="btn btn-warning">Decrease</button>
+	<button id="reset" class="btn btn-success">Reset</button>
+	<button id="convert" class="btn btn-outline-info">Convert</button>
+<script>
+	let temperture = 20;
+
+	const tempertureElement = document.getElementById('temperture');
+	const increaseButton = document.getElementById('increase');
+	const decreaseButton = document.getElementById('decrease');
+	const resetButton = document.getElementById('reset');
+	const convertButton = document.getElementById('convert');
+
+	function tempertureConverter(temperture) {
+		temperture = parseFloat(temperture); //parseFloat convert number to string?
+		document.getElementById('temperture').innerHTML=`${(temperture*1.8)+32} °F`;
+	};
+
+
+	function updateTemperature() {
+		tempertureElement.textContent = `${temperture} °C`;
+	};
+
+	//event listener
+	increaseButton.addEventListener('click', ()=>{
+		temperture += 1;
+		updateTemperature();
+	});
+
+	decreaseButton.addEventListener('click', ()=>{
+		temperture -= 1;
+		updateTemperature();
+	});
+
+	resetButton.addEventListener('click', ()=>{
+		temperture = 20;
+		updateTemperature();
+	});
+
+	convertButton.addEventListener('click', ()=>{
+		tempertureConverter(temperture);
+	});
+
+	updateTemperature(); //initial display
+</script>
+</body>
+</html>
